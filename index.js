@@ -6,6 +6,13 @@
  * INTER-Mediator is supplied under MIT License.
  * Please see the full license for details:
  * https://github.com/INTER-Mediator/INTER-Mediator/blob/master/dist-docs/License.txt
+ * 
+ * This plugin requres the following libraries, they can include with CDN services.
+ * The sample file "jquery_datepicker_MySQL.html" of INTER-Mediator loacated 
+ * "INTER-Mediator/samples/Sample_webpage/" includes the loading code ot them.
+ * 
+ * JQuery (https://jquery.com/)
+ * jQuery UI (https://api.jqueryui.com/)
  */
 
 IMParts_Catalog.jquery_datepicker = {
@@ -34,17 +41,23 @@ IMParts_Catalog.jquery_datepicker = {
     },
 
     ids: [],
+    dateFormat: "yy-mm-dd",
 
     finish: function () {
-        for (var i = 0; i < this.ids.length; i++) {
-            var targetId = this.ids[i];
+        for (var i = 0; i < IMParts_Catalog.jquery_datepicker.ids.length; i++) {
+            var targetId = IMParts_Catalog.jquery_datepicker.ids[i];
             var targetNode = $('#' + targetId);
             if (targetNode) {
                 targetNode.datepicker({
-                    onSelect: function (dateText) {
-                        this.value = dateText;
-                        IMLibUI.valueChange(this.id);
-                    }
+                    dateFormat: IMParts_Catalog.jquery_datepicker.dateFormat,
+                    onSelect: (function () {
+                        var thisId = targetId;
+                        var thidNode = targetNode;
+                        return function (dateText) {
+                            thidNode.value = dateText;
+                            IMLibUI.valueChange(thisId);
+                        }
+                    })()
                 });
             }
         }
