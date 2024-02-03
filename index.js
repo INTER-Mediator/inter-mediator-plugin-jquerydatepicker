@@ -16,7 +16,7 @@
  */
 
 IMParts_Catalog.jquery_datepicker = {
-    instanciate: function (targetNode) {
+    instantiate: function (targetNode) {
         var nodeId = targetNode.getAttribute('id');
         this.ids.push(nodeId);
 

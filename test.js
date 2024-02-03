@@ -9,7 +9,7 @@ eval(fs.readFileSync('./index.js').toString());
 
 test('Object exists, and has fundamental methods.', () => {
   expect(typeof IMParts_Catalog.jquery_datepicker).toBe('object')
-  expect(typeof IMParts_Catalog.jquery_datepicker.instanciate).toBe('function')
+  expect(typeof IMParts_Catalog.jquery_datepicker.instantiate).toBe('function')
   expect(typeof IMParts_Catalog.jquery_datepicker.finish).toBe('function')
   }
 )
